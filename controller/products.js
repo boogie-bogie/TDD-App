@@ -1,5 +1,5 @@
 const productModel = require("../schemas/products.schema");
 
-exports.createProduct = () => {
-  productModel.create();
+exports.createProduct = (req, res, next) => {
+  productModel.create(req.body);
 };
