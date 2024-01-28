@@ -5,7 +5,7 @@
   "main": "sever.js",
   "scripts": {
     "format": "prettier --write *.js **/*.js",
-    "test": "jest"
+    "test": "jest --runInBand --detectOpenHandles"
   },
   "author": "",
   "license": "ISC",

@@ -26,6 +26,8 @@ app.get("/", (req, res) => {
 });
 
 /**HTTP 서버 시작 */
-app.listen(PORT, () => {
-  console.log(PORT, `번 포트로 서버가 열렸어요! http://localhost:${PORT}`);
-});
+// app.listen(PORT, () => {
+//   console.log(PORT, `번 포트로 서버가 열렸어요! http://localhost:${PORT}`);
+// });
+
+module.exports = app;
