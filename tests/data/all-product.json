@@ -1,0 +1,27 @@
+[
+  {
+    "name": "Gloves",
+    "description": "이 상품은 글러브입니다.",
+    "price": "5050"
+  },
+  {
+    "name": "Gloves",
+    "description": "이 상품은 글러브입니다.",
+    "price": "7000"
+  },
+  {
+    "name": "Gloves",
+    "description": "이 상품은 글러브입니다.",
+    "price": "9000"
+  },
+  {
+    "name": "Gloves",
+    "description": "이 상품은 글러브입니다.",
+    "price": "10000"
+  },
+  {
+    "name": "Gloves",
+    "description": "이 상품은 글러브입니다.",
+    "price": "20000"
+  }
+]
