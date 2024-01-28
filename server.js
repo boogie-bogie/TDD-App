@@ -25,6 +25,12 @@ app.get("/", (req, res) => {
   res.send("Hello World");
 });
 
+/** 에러 핸들러 미들웨어 생성 */
+app.use((error, req, res, next) => {
+	res.status(500).json({ message: error.message });
+});
+
+
 /**HTTP 서버 시작 */
 // app.listen(PORT, () => {
 //   console.log(PORT, `번 포트로 서버가 열렸어요! http://localhost:${PORT}`);
