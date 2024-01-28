@@ -51,7 +51,7 @@ describe("Product Controller Create", () => {
 
 describe("Product Controller Read", () => {
   it("should have a getProducts function", () => {
-    expect(typeof productController.getProduct).toBe("function");
+    expect(typeof productController.getProducts).toBe("function");
   });
 
   it("should call ProductModel.find({})", async () => {

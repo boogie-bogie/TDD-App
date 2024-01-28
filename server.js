@@ -27,9 +27,8 @@ app.get("/", (req, res) => {
 
 /** 에러 핸들러 미들웨어 생성 */
 app.use((error, req, res, next) => {
-	res.status(500).json({ message: error.message });
+  res.status(500).json({ message: error.message });
 });
-
 
 /**HTTP 서버 시작 */
 // app.listen(PORT, () => {
