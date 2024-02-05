@@ -6,6 +6,9 @@ const allProducts = require("../data/all-product.json");
 
 productModel.create = jest.fn();
 productModel.find = jest.fn();
+productModel.findById = jest.fn();
+
+const productId = "45598fjejfiefkdk";
 
 let req, res, next;
 beforeEach(() => {
@@ -49,7 +52,7 @@ describe("Product Controller Create", () => {
   });
 });
 
-describe("Product Controller Read", () => {
+describe("Product Controller Read getProducts", () => {
   it("should have a getProducts function", () => {
     expect(typeof productController.getProducts).toBe("function");
   });
@@ -77,5 +80,43 @@ describe("Product Controller Read", () => {
     productModel.find.mockReturnValue(rejectedPromise);
     await productController.getProducts(req, res, next);
     expect(next).toBeCalledWith(errorMessage);
+  });
+});
+
+describe("Product Controller Read getProductById", () => {
+  it("should have a getProductById function", () => {
+    expect(typeof productController.getProductById).toBe("function");
+  });
+  it("should call productModel.findById", async () => {
+    req.params.productId = productId;
+    await productController.getProductById(req, res, next);
+    expect(productModel.findById).toBeCalledWith(productId);
+  });
+
+  it("should return json body and response code 200", async () => {
+    productModel.findById.mockReturnValue(newProduct);
+    await productController.getProductById(req, res, next);
+    expect(res.statusCode).toBe(200);
+    expect(res._getJSONData()).toStrictEqual(newProduct);
+    expect(res._isEndCalled()).toBeTruthy();
+  });
+
+  /**if (product) -> 200 code / else if -> 404 code */
+  it("should return 404 status code when item doesnt exist", async () => {
+    productModel.findById.mockReturnValue(null);
+    await productController.getProductById(req, res, next);
+    expect(res.statusCode).toBe(404);
+    expect(res._isEndCalled).toBeTruthy();
+  });
+
+  it("should handle errors", async () => {
+    //Given 준비 구문
+    const errorMessage = { message: "error" };
+    const rejectedPromise = Promise.reject(errorMessage);
+    productModel.findById.mockReturnValue(rejectedPromise);
+    //When 실행 구문
+    await productController.getProductById(req, res, next);
+    //Then 검증 구문
+    expect(next).toHaveBeenCalledWith(errorMessage);
   });
 });
